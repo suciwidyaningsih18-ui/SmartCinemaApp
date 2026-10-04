@@ -17,14 +17,12 @@ public class TiketVIP extends Tiket {
         this.fasilitasSnack = fasilitasSnack;
     }
 
-    // Method Overriding
-    @Override
+    
     public double hitungTotalHarga() {
         // Tiket VIP ada tambahan biaya layanan dan snack Rp 25.000
         return getHargaDasar() + 25000;
     }
 
-    @Override
     public void tampilkanInfo() {
         System.out.printf("[VIP]     Pemesan: %-12s | Film: %-15s | Snack: %-10s | Total Biaya: Rp%.2f\n",
                 getNamaPemesan(), getJudulFilm(), fasilitasSnack, hitungTotalHarga());
