@@ -17,13 +17,12 @@ public class TiketReguler extends Tiket {
     }
 
 
-    @Override
     public double hitungTotalHarga() {
        
         return getHargaDasar() + 5000;
     }
 
-    @Override
+  
     public void tampilkanInfo() {
         System.out.printf("[REGULER] Pemesan: %-12s | Film: %-15s | Kursi: %-4s | Total Biaya: Rp%.2f\n",
                 getNamaPemesan(), getJudulFilm(), nomorKursi, hitungTotalHarga());
