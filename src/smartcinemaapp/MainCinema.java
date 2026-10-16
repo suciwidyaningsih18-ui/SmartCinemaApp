@@ -3,6 +3,12 @@ package smartcinemaapp;
 import java.util.Scanner;
 
 public class MainCinema {
+    
+    public static void simulasiCetakTiket(Tiket item){
+        System.out.print(">> [SIMULASI PROSES] ");
+        item.tampilkanInfo();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -18,15 +24,16 @@ public class MainCinema {
             System.out.println("\n--- MENU UTAMA ---");
             System.out.println("1. Pesan Tiket Reguler");
             System.out.println("2. Pesan Tiket VIP");
-            System.out.println("3. Tampilkan Semua Tiket");
-            System.out.println("4. Cari Tiket Berdasarkan Nama Pemesan");
-            System.out.println("5. Keluar");
-            System.out.print("Pilih menu (1-5): ");
+            System.out.println("3. Pesan Tiket IMAX");
+            System.out.println("4. Tampilkan Semua Tiket");
+            System.out.println("5. Cari Tiket Berdasarkan Nama Pemesan");
+            System.out.println("6. Simulasi Cetak Tiket (Parameter Upcasting)");
+            System.out.println("7. Keluar");
+            System.out.print("Pilih menu (1-7): ");
             
             int pilihan = scanner.nextInt();
             scanner.nextLine();
 
-          
             switch (pilihan) {
                 case 1:
                     if (jumlahTiket < daftarTiket.length) {
@@ -40,7 +47,6 @@ public class MainCinema {
                         System.out.print("Masukkan Nomor Kursi  : ");
                         String kursi = scanner.nextLine();
 
-                       
                         daftarTiket[jumlahTiket] = new TiketReguler(namaR, filmR, hargaR, kursi);
                         jumlahTiket++;
                         System.out.println(">> Tiket Reguler Berhasil Dipesan!");
@@ -61,7 +67,6 @@ public class MainCinema {
                         System.out.print("Masukkan Paket Snack  : ");
                         String snack = scanner.nextLine();
 
-                       
                         daftarTiket[jumlahTiket] = new TiketVIP(namaV, filmV, hargaV, snack);
                         jumlahTiket++;
                         System.out.println(">> Tiket VIP Berhasil Dipesan!");
@@ -70,25 +75,43 @@ public class MainCinema {
                     }
                     break;
 
-                case 3:
+                case 3: 
+                    if (jumlahTiket < daftarTiket.length) {
+                        System.out.print("Masukkan Nama Pemesan : ");
+                        String namaI = scanner.nextLine();
+                        System.out.print("Masukkan Judul Film   : ");
+                        String filmI = scanner.nextLine();
+                        System.out.print("Masukkan Harga Dasar  : ");
+                        double hargaI = scanner.nextDouble();
+                        scanner.nextLine();
+                        System.out.print("Masukkan Tipe Studio: ");
+                        String kacamata = scanner.nextLine();
+
+                        daftarTiket[jumlahTiket] = new TiketIMAX(namaI, filmI, hargaI, kacamata);
+                        jumlahTiket++;
+                        System.out.println(">> Tiket IMAX Berhasil Dipesan!");
+                    } else {
+                        System.out.println(">> Kapasitas penyimpanan tiket penuh!");
+                    }
+                    break;
+
+                case 4: 
                     System.out.println("\n--- DAFTAR TIKET DIPESAN ---");
                     if (jumlahTiket == 0) {
                         System.out.println("Belum ada tiket yang dipesan.");
                     } else {
                         for (int i = 0; i < jumlahTiket; i++) {
-                           
                             daftarTiket[i].tampilkanInfo();
                         }
                         System.out.println("Total Tiket Terbuat (Static): " + Tiket.getTotalTiketDibuat());
                     }
                     break;
 
-                case 4:
+                case 5: 
                     System.out.print("Masukkan Nama Pemesan yang dicari: ");
                     String cariNama = scanner.nextLine();
                     boolean ditemukanNama = false;
                     for (int i = 0; i < jumlahTiket; i++) {
-                       
                         if (daftarTiket[i].cariTiket(cariNama)) {
                             daftarTiket[i].tampilkanInfo();
                             ditemukanNama = true;
@@ -99,7 +122,18 @@ public class MainCinema {
                     }
                     break;
 
-                case 5:
+                case 6: 
+                    System.out.println("\n--- SIMULASI CETAK TIKET (PARAMETER UPCASTING) ---");
+                    if (jumlahTiket == 0) {
+                        System.out.println(">> Belum ada tiket untuk disimulasikan.");
+                    } else {
+                        for (int i = 0; i < jumlahTiket; i++) {
+                            simulasiCetakTiket(daftarTiket[i]);
+                        }
+                    }
+                    break;
+
+                case 7:
                     running = false;
                     System.out.println("\nTerima kasih telah menggunakan Smart Cinema System!");
                     break;
