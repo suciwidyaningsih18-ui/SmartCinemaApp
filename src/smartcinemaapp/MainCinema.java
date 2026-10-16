@@ -121,7 +121,6 @@ public class MainCinema {
                         System.out.println(">> Tiket atas nama '" + cariNama + "' tidak ditemukan.");
                     }
                     break;
-
                 case 6: 
                     System.out.println("\n--- SIMULASI CETAK TIKET (PARAMETER UPCASTING) ---");
                     if (jumlahTiket == 0) {

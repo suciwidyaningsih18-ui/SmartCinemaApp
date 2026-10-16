@@ -13,7 +13,6 @@ public class Tiket {
         this.hargaDasar = hargaDasar;
         totalTiketDibuat++; 
     }
-
     public String getNamaPemesan() {
         return namaPemesan;
     }

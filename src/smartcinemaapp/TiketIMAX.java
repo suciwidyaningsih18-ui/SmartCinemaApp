@@ -7,7 +7,6 @@ public class TiketIMAX extends Tiket {
         super(namaPemesan, judulFilm, hargaDasar);
         this.tipeStudio = tipeStudio;
     }
-
     public String getTipeStudio() {
         return tipeStudio;
     }

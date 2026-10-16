@@ -16,8 +16,6 @@ public class TiketVIP extends Tiket {
     public void setFasilitasSnack(String fasilitasSnack) {
         this.fasilitasSnack = fasilitasSnack;
     }
-
-   
     public double hitungTotalHarga() {
         // Tiket VIP ada tambahan biaya layanan dan snack Rp 25.000
         return getHargaDasar() + 25000;
