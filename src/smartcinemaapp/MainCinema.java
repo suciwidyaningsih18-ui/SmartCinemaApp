@@ -7,6 +7,8 @@ public class MainCinema {
     public static void simulasiCetakTiket(Tiket item){
         System.out.print(">> [SIMULASI PROSES] ");
         item.tampilkanInfo();
+        
+        item.cetakStrukSpesifik(); 
     }
 
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class MainCinema {
         boolean running = true;
 
         System.out.println("============================================");
-        System.out.println("   SELAMAT DATANG DI SMART CINEMA SYSTEM    ");
+        System.out.println("    SELAMAT DATANG DI SMART CINEMA SYSTEM    ");
         System.out.println("============================================");
 
         while (running) {
@@ -84,7 +86,7 @@ public class MainCinema {
                         System.out.print("Masukkan Harga Dasar  : ");
                         double hargaI = scanner.nextDouble();
                         scanner.nextLine();
-                        System.out.print("Masukkan Tipe Studio: ");
+                        System.out.print("Masukkan Tipe Studio  : ");
                         String kacamata = scanner.nextLine();
 
                         daftarTiket[jumlahTiket] = new TiketIMAX(namaI, filmI, hargaI, kacamata);
@@ -101,9 +103,22 @@ public class MainCinema {
                         System.out.println("Belum ada tiket yang dipesan.");
                     } else {
                         for (int i = 0; i < jumlahTiket; i++) {
+                            System.out.print((i + 1) + ". ");
                             daftarTiket[i].tampilkanInfo();
+                            
+                            
+                            daftarTiket[i].cetakStrukSpesifik();
+
+                            
+                            if (daftarTiket[i] instanceof DapatDiskon) {
+                                ((DapatDiskon) daftarTiket[i]).terapkanDiskon(10);
+                            }
+                            if (daftarTiket[i] instanceof DapatCashback) {
+                                ((DapatCashback) daftarTiket[i]).klaimCashback();
+                            }
+                            System.out.println("------------------------------------------------------------------");
                         }
-                        System.out.println("Total Tiket Terbuat (Static): " + Tiket.getTotalTiketDibuat());
+                        System.out.println("Total Tiket Terbuat (Static): " + Tiket.totalTiketDibuat);
                     }
                     break;
 
@@ -112,7 +127,8 @@ public class MainCinema {
                     String cariNama = scanner.nextLine();
                     boolean ditemukanNama = false;
                     for (int i = 0; i < jumlahTiket; i++) {
-                        if (daftarTiket[i].cariTiket(cariNama)) {
+                        
+                        if (daftarTiket[i].getNamaPemesan().equalsIgnoreCase(cariNama)) {
                             daftarTiket[i].tampilkanInfo();
                             ditemukanNama = true;
                         }
@@ -121,6 +137,7 @@ public class MainCinema {
                         System.out.println(">> Tiket atas nama '" + cariNama + "' tidak ditemukan.");
                     }
                     break;
+
                 case 6: 
                     System.out.println("\n--- SIMULASI CETAK TIKET (PARAMETER UPCASTING) ---");
                     if (jumlahTiket == 0) {
