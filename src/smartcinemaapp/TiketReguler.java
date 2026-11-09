@@ -3,7 +3,7 @@ package smartcinemaapp;
 public class TiketReguler extends Tiket {
     private String nomorKursi;
     
-    public TiketReguler(String namaPemesan, String judulFilm, double hargaDasar, String nomorKursi) {
+    public TiketReguler(String namaPemesan, String judulFilm, double hargaDasar, String nomorKursi) throws Exception {
         super(namaPemesan, judulFilm, hargaDasar);
         this.nomorKursi = nomorKursi;
     }

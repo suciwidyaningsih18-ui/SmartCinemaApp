@@ -3,7 +3,7 @@ package smartcinemaapp;
 public class TiketIMAX extends Tiket implements DapatDiskon, DapatCashback {
     private String tipeStudio;
 
-    public TiketIMAX(String namaPemesan, String judulFilm, double hargaDasar, String tipeStudio) {
+    public TiketIMAX(String namaPemesan, String judulFilm, double hargaDasar, String tipeStudio) throws Exception {
         super(namaPemesan, judulFilm, hargaDasar);
         this.tipeStudio = tipeStudio;
     }

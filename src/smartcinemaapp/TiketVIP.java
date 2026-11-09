@@ -3,7 +3,7 @@ package smartcinemaapp;
 public class TiketVIP extends Tiket implements DapatDiskon {
     private String fasilitasSnack;
 
-    public TiketVIP(String namaPemesan, String judulFilm, double hargaDasar, String fasilitasSnack) {
+    public TiketVIP(String namaPemesan, String judulFilm, double hargaDasar, String fasilitasSnack) throws Exception {
         super(namaPemesan, judulFilm, hargaDasar);
         this.fasilitasSnack = fasilitasSnack;
     }

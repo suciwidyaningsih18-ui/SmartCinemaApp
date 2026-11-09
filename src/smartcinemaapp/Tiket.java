@@ -7,7 +7,10 @@ public abstract class Tiket {
 
     public static int totalTiketDibuat = 0;
 
-    public Tiket(String namaPemesan, String judulFilm, double hargaDasar) {
+    public Tiket(String namaPemesan, String judulFilm, double hargaDasar) throws Exception {
+        if (hargaDasar <= 0) {
+            throw new Exception("Harga dasar tidak boleh nol atau negatif!");
+        }
         this.namaPemesan = namaPemesan;
         this.judulFilm = judulFilm;
         this.hargaDasar = hargaDasar;
